@@ -41,7 +41,7 @@ const loadPage = (pageUrl, outDir = '.') => {
           const $asset = $(asset);
           const source = getSource($asset);
           const url = new URL(source, pageUrl);
-          setSource($asset, url);
+          setSource($asset, url.toString());
         })
         .filter((_, asset) => {
           const assetUrl = getSource($(asset));
