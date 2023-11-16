@@ -34,9 +34,15 @@ const loadPage = (pageUrl, outDir = '.') => {
     .then(({ data, status }) => {
       log('succeeded (%d, %s)', status, pageUrl);
 
-      const $ = load(data, { baseURI: pageUrl });
+      const $ = load(data);
 
       const $assets = $('img[src], link[href], script[src]')
+        .each((_, asset) => {
+          const $asset = $(asset);
+          const source = getSource($asset);
+          const url = new URL(source, pageUrl);
+          setSource($asset, url);
+        })
         .filter((_, asset) => {
           const assetUrl = getSource($(asset));
           const { origin } = new URL(pageUrl);
