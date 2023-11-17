@@ -17,5 +17,8 @@ test:
 debug:
 	DEBUG=${NS} npm run test
 
+uninstall:
+	npm unlink -g @hexlet/code
+
 publish:
 	npm publish --dry-run
