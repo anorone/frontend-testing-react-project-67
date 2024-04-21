@@ -33,9 +33,10 @@ const loadPage = (pageUrl, outDir = '.') => {
   log('loading resource from %s', pageUrl);
 
   const result = client.get(pageUrl)
-    .then(({ data, status }) => {
+    .then((response) => {
+      const { data, status } = response;
       log('succeeded (%d, %s)', status, pageUrl);
-
+      console.log(response);
       const $ = load(data);
 
       const $assets = $('img[src], link[href], script[src]')
