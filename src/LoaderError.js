@@ -37,7 +37,7 @@ class LoaderError extends Error {
     const message = messageParts.join(' ');
 
     super(message || error.message.toLowerCase());
-
+    console.log(error);
     this.name = this.constructor.name;
     this.stack = (new Error()).stack;
   }
