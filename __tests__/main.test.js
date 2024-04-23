@@ -2,7 +2,7 @@ import os from 'os';
 import fs from 'fs/promises';
 import path from 'path';
 import nock from 'nock';
-import prettier from 'prettier';
+import { format } from 'prettier';
 import readFixture from '../utils/readFixture.js';
 import loadPage from '../src/main.js';
 
@@ -61,7 +61,7 @@ it('saves the page', async () => {
   expect(result).toEqual({ filepath });
 
   const rawHtml = await fs.readFile(result.filepath, 'utf-8');
-  const html = prettier.format(rawHtml, {
+  const html = await format(rawHtml, {
     parser: 'html',
     printWidth: 105,
   });
